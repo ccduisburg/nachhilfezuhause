@@ -33,13 +33,51 @@ public class VerwaltungsService {
 
     }
 
-    public void kurszumStudent(Kurs kname, Student student) {
-
-        for (Kurs k : k1) {
+    public void studentListe(){
+    
+    for(Student s:s1){
+        System.out.println(" "+s.getName()+" "+s.getVorname()+" "+s.getSchulName()+" "+s.getSchulKlasse()+" "+s.getKurs());
+        
+    }    
+    }
+    public void lehreListe(){
+    
+    for(Lehre l:l1){
+        System.out.println(" "+l.getName()+" "+l.getVorname()+" "+l.getKurs());
+        
+    }    
+    }
+    public void kursListe(){
+    
+    for(Kurs k:k1){
+        System.out.println(" "+k.getKursName());
+        
+    }    
+    }
+    
+    public void studentKundigung(Student s){
+      s.setGekundigt(true);
+    }
+    
+    public void lehreKundigung(Lehre l){
+      l.setGekundigt(true);
+    }
+    public void kursKundigung(Kurs k){
+      k.setGekundigt(true);
+    }
+    /*
+    public void kurszumStudent(Kurs k1, Student st1) {
+          for (Kurs k : k1) {
             if (k.equals(kname)) {
                 k.anmeldung(student);
             }
 
         }
+    }*/
+    
+    public void SetKurszumLehre(Lehre l)
+    {
+        l.setKurs(k1);
+  
     }
 }

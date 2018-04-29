@@ -2,6 +2,21 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+* senaryo
+    aktor
+    - kayitci
+    - admin
+    - ogrenci
+
+    eylemler
+    - ogrenci kayit
+    - ders kayit
+    - dersläk kayit
+
+- TODO:
+- menu yapisi kurulacak
+- ders kayit yapilacak
++ ogrenci kayit ekrani 
  */
 package nachhilfe_verwaltungs.gui;
 
@@ -15,67 +30,144 @@ import nachhilfe_verwaltungs.logic.VerwaltungsService;
  */
 public class Navigation {
 
-private Scanner scan;
-private VerwaltungsService vs;
-
-
+    private Scanner scan;
+    private VerwaltungsService vs;
 
     public Navigation(VerwaltungsService vs) {
-         this.vs=vs;
+        this.vs = vs;
         scan = new Scanner(System.in);
         navigation();
     }
 
     public void navigation() {
-        
-       MenuCall m = new MenuCall(vs);
-        m.mainmenuCall(10);
-        Scanner reader = new Scanner(System.in);
-        int auswahl = reader.nextInt();
-        // while(auswahl!=10){       // while(auswahl!=10){
+        MenuCall m = new MenuCall(vs);
 
-        //  MenuCall(auswahl);          
-        switch (auswahl) {
+        switch (m.mainmenuCall()) { // ilk basta ana menu cagirilir
+            case 1: {// Student Verwaltung
+                switch (m.callStudentVerwaltungMenu()) {
+                    case 1: {// Für neue die Student Anmeldung
+                        m.studentAnmeldung();
+                        break;
+                    }
+                    case 2: {// Für neue die Kurs Anmeldung
+                        m.kursAnmeldungfurStudent();
+                        break;
+                    }
+                    case 3: {//  Für Student kungigung
+                        m.studentKundigung();
+                        break;
+                    }
+                    case 4: {//  4. Für Kurs entfernen von Student
 
-            case 1: {
-
-                m.submenuCall(auswahl);
-
-                reader = new Scanner(System.in);
-                auswahl = reader.nextInt();
-                // Student s1 = new Student("cemil", "Gymnasium", "6. Klasse");
-               
-                break;
+                        break;
+                    }
+                    // 5. Für Auflisten
+                    case 5: {
+                        vs.studentListe();
+                        break;
+                    }
+                    case 10: {//Rückkehr main menü
+                        m.mainmenuCall();
+                        break;
+                    }
+                    default:
+                        break;
+                }
+                break;//Student Verwaltungbreak-------------------- 
             }
-            case 2: {
+            case 2: {// Lehre Verwaltung
 
-                m.submenuCall(auswahl);
+                switch (m.callLehreverwaltungsmenu()) {
+                    case 1: {//neu Lehre anmeldung
+
+                        m.lehreAnmeldung();
+                        break;
+                    }
+                    case 2: {//Für den Kurs registrieren
+
+                        break;
+                    }
+                    case 3: {//Lehre Kündigung
+                        m.lehreKundigung();
+                        break;
+                    }
+
+                    case 4: {//   Für Kurs entfernen von Lehre
+
+                        break;
+                    }
+                    case 10: {//Rückkehr main menü
+                        m.mainmenuCall();
+                        break;
+                    }
+                    default:
+                        break;
+                }
                 //menuCall()
-
-                break;
+                break;//Lehre Verwaltungs break--------------------
             }
-            case 3: {
-                m.submenuCall(auswahl);
+            case 3: {//3. Kurs Verwaltung
 
-                break;
-            }
-            case 4: {
-                m.submenuCall(auswahl);
+                switch (m.callKursverwaltungsmenu()) {
 
-                break;
-            }
-            case 5: {
-                m.submenuCall(auswahl);
+                    case 1: {//neu Lehre anmeldung
 
-                break;
+                        m.lehreAnmeldung();
+                        break;
+                    }
+                    case 2: {//Für den Kurs registrieren
+
+                        break;
+                    }
+                    case 3: {//Lehre Kündigung
+                        m.lehreKundigung();
+                        break;
+                    }
+
+                    case 4: {//   Für Kurs entfernen von Lehre
+
+                        break;
+                    }
+                    case 10: {//Rückkehr main menü
+                        m.mainmenuCall();
+                        break;
+                    }
+                }
+
+                break;//3. Kurs Verwaltung break----------------------
             }
+            case 4: {//Auflisten
+
+                switch (m.callListenMenu()) {
+                    case 1: {//Alle die Studenten Listen
+                        vs.studentListe();
+                        break;
+                    }
+                    case 2: {//Alle die Lehre Listen
+                        vs.lehreListe();
+                        break;
+                    }
+                    case 3: {//Alle die Kurs mit Student Listen
+                        vs.kursListe();
+                        break;
+                    }
+                    case 10: {//Rückkehr main menü
+                        m.mainmenuCall();
+                        break;
+                    }
+                    default:
+                        break;
+                }
+
+                break;//Auflisten break-----------------
+            }
+
             case 10: {
-                m.mainmenuCall(10);
+                break;
                 // reader=new Scanner(System.in);
                 //auswahl =reader.nextInt();
-
-                // 
             }
+
             default:
                 System.out.println("Invalid nummer");
 
